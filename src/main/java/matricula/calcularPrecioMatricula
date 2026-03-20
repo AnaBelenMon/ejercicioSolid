@@ -1,0 +1,11 @@
+package matricula;
+
+public class calcularPrecioMatricula {
+    public double calcularPrecio(double precioBase, boolean bonificacion) {
+        if (precioBase <= 0) throw new IllegalArgumentException("Precio inválido");
+        double total = precioBase;
+        if (bonificacion) total *= 0.85; // 15% descuento
+        // “Gastos de gestión” fijos
+        return total + 12.0;
+    }
+}
