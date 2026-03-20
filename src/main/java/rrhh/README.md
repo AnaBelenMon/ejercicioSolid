@@ -26,4 +26,5 @@ En este paquete se vulnera el principio DIP -> Dependency Inversion Principle
 **Describe la refactorización (qué extraes, qué conviertes en interfaz, qué separas, etc.):**
 - Eliminaría los new de AltaEmpleadoService y los haría atributos para poder pedir los parametros 
 - en el constructor
-- Crearía la interfaz GeneradorPassword
+- Crearía la interfaz GenerarPassword
+- Crearía la interfaz RepositorioEmpleados
