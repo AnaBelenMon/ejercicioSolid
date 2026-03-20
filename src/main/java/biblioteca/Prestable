@@ -1,0 +1,9 @@
+package biblioteca;
+
+import java.time.LocalDate;
+
+public interface Prestable {
+    void prestarA(String dni, LocalDate fechaDevolucion);
+    void devolver();
+    boolean estaPrestado();
+}
