@@ -1,0 +1,8 @@
+package matricula;
+
+public class notificadorConsola implements notificador {
+    @Override
+    public void notificar(String mensage) {
+        System.out.println("[AVISO] "+mensage);
+    }
+}
