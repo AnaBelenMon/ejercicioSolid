@@ -1,0 +1,8 @@
+package matricula;
+
+import java.util.List;
+
+public interface repositorioMatriculas {
+    void guardarMatricula(Matricula matricula);
+    List<Matricula> listarMatriculas();
+}
