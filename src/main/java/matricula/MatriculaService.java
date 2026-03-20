@@ -1,49 +1,35 @@
 package matricula;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MatriculaService {
 
-    private final List<Matricula> matriculas = new ArrayList<>();
+    private final validarDni validador;
+    private final calcularPrecioMatricula calculadora;
+    private final repositorioMatriculas repo;
+    private final notificador notificador;
+    private final exportarMatricula exportador;
+
+    public MatriculaService(validarDni validador, calcularPrecioMatricula calculadora, repositorioMatriculas repo, notificador notificador, exportarMatricula exportador) {
+        this.validador = validador;
+        this.calculadora = calculadora;
+        this.repo = repo;
+        this.notificador = notificador;
+        this.exportador = exportador;
+    }
 
     public Matricula crearMatricula(String dni, String curso, double precioBase, boolean bonificacion) {
-        validarDni(dni);
-        double precioFinal = calcularPrecio(precioBase, bonificacion);
+        validador.validarDni(dni);
+        double precioFinal = calculadora.calcularPrecio(precioBase, bonificacion);
 
         Matricula m = new Matricula(dni, curso, LocalDate.now(), precioFinal);
-        matriculas.add(m);
+        repo.guardarMatricula(m);
 
-        // Simulación de notificación (no I/O real, solo consola)
-        System.out.println("[AVISO] Matriculado " + dni + " en " + curso + " por " + precioFinal + "€");
+        notificador.notificar("Matriculado " + dni + " en " + curso + " por " + precioFinal + "€");
+
         return m;
     }
-
     public String exportarResumen() {
-        String resultado = "RESUMEN MATRÍCULAS\n";
-
-        for (Matricula m : matriculas) {
-            resultado += m.getDni() + " | "
-                    + m.getCurso() + " | "
-                    + m.getFecha() + " | "
-                    + m.getPrecioFinal() + "\n";
-        }
-
-        return resultado;
-    }
-
-    private void validarDni(String dni) {
-        if (dni == null || dni.isBlank() || dni.length() < 7) {
-            throw new IllegalArgumentException("DNI inválido");
-        }
-    }
-
-    private double calcularPrecio(double precioBase, boolean bonificacion) {
-        if (precioBase <= 0) throw new IllegalArgumentException("Precio inválido");
-        double total = precioBase;
-        if (bonificacion) total *= 0.85; // 15% descuento
-        // “Gastos de gestión” fijos
-        return total + 12.0;
+        return exportador.exportarMatricula(repo.listarMatriculas());
     }
 }
