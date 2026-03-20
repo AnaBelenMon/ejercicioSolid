@@ -1,0 +1,18 @@
+package matricula;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class repositorioMatriculasEnMemoria implements repositorioMatriculas {
+    private List<Matricula> datos = new ArrayList<>();
+
+    @Override
+    public void guardarMatricula(Matricula matricula) {
+        datos.add(matricula);
+    }
+
+    @Override
+    public List<Matricula> listarMatriculas() {
+        return new ArrayList<>(datos);
+    }
+}
