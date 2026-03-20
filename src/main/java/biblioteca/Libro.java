@@ -33,6 +33,3 @@ public class Libro implements Prestable {
         return titulo;
     }
 }
-        return titulo;
-    }
-}
