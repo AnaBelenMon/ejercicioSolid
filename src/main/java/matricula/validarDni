@@ -1,0 +1,9 @@
+package matricula;
+
+public class validarDni {
+    public void validarDni(String dni) {
+        if (dni == null || dni.isBlank() || dni.length() < 7) {
+            throw new IllegalArgumentException("DNI inválido");
+        }
+    }
+}
