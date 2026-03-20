@@ -3,7 +3,6 @@ package matricula;
 import java.time.LocalDate;
 
 public class Matricula {
-
     private final String dni;
     private final String curso;
     private final LocalDate fecha;
