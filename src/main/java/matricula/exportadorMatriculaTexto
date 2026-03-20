@@ -1,0 +1,20 @@
+package matricula;
+
+import java.util.List;
+
+public class exportadorMatriculaTexto implements exportarMatricula {
+
+    @Override
+    public String exportarMatricula(List<Matricula> matriculas) {
+        StringBuilder sb = new StringBuilder("RESUMEN MATRÍCULAS\n");
+
+        for (Matricula m : matriculas) {
+            sb.append(m.getDni()).append(" | ")
+                    .append(m.getCurso()).append(" | ")
+                    .append(m.getFecha()).append(" | ")
+                    .append(m.getPrecioFinal()).append("\n");
+        }
+
+        return sb.toString();
+    }
+}
