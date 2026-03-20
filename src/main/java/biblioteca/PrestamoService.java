@@ -4,15 +4,15 @@ import java.time.LocalDate;
 
 public class PrestamoService {
 
-    public void prestar(Libro libro, String dni) {
+    public void prestar(Prestable libro, String dni) {
         if (libro.estaPrestado()) {
             throw new IllegalStateException("Ya estaba prestado");
         }
         libro.prestarA(dni, LocalDate.now().plusDays(14));
-        System.out.println("Prestado: " + libro.getTitulo() + " a " + dni);
+        System.out.println("Prestado: " + ((Libro) libro).getTitulo() + " a " + dni);
     }
 
-    public boolean devolver(Libro libro) {
+    public boolean devolver(Prestable libro) {
         libro.devolver();
         return !libro.estaPrestado();
     }
